@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "root_storage_bucket" {
+resource "aws_s3_bucket" "root_storage_bucket_syed" {
   bucket        = "${var.prefix}-rootbucket"
   force_destroy = true
   tags = merge(var.tags, {
