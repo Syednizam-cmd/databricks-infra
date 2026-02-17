@@ -5,7 +5,7 @@ data "databricks_aws_assume_role_policy" "this" {
 
 resource "aws_iam_role" "cross_account_role_test" {
   name               = "${var.prefix}-crossaccount-${random_string.suffix.result}"
-  #name               = "${var.prefix}-crossaccount"
+  #name              = "${var.prefix}-crossaccount"
   assume_role_policy = data.databricks_aws_assume_role_policy.this.json
   tags               = var.tags
 }
