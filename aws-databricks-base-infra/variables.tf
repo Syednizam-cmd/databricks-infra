@@ -27,3 +27,17 @@ variable "databricks_account_id" {
   type        = string
   description = "(Required) Databricks Account ID"
 }
+
+
+variable "databricks_account_host" {
+  type = string
+}
+
+variable "databricks_username" {
+  type = string
+}
+
+variable "databricks_password" {
+  type = string
+  sensitive = true
+}
