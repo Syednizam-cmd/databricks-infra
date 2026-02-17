@@ -7,14 +7,14 @@ resource "aws_s3_bucket" "root_storage_bucket_syed" {
 }
 
 resource "aws_s3_bucket_versioning" "versioning_example" {
-  bucket = aws_s3_bucket.root_storage_bucket.id
+  bucket = aws_s3_bucket.root_storage_bucket_syed.id
   versioning_configuration {
     status = "Disabled"
   }
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "root_storage_bucket" {
-  bucket = aws_s3_bucket.root_storage_bucket.bucket
+  bucket = aws_s3_bucket.root_storage_bucket_syed.bucket
 
   rule {
     apply_server_side_encryption_by_default {
@@ -24,7 +24,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "root_storage_buck
 }
 
 resource "aws_s3_bucket_public_access_block" "root_storage_bucket" {
-  bucket                  = aws_s3_bucket.root_storage_bucket.id
+  bucket                  = aws_s3_bucket.root_storage_bucket_syed.id
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
@@ -33,7 +33,7 @@ resource "aws_s3_bucket_public_access_block" "root_storage_bucket" {
 }
 
 data "databricks_aws_bucket_policy" "this" {
-  bucket = aws_s3_bucket.root_storage_bucket.bucket
+  bucket = aws_s3_bucket.root_storage_bucket_syed.bucket
 }
 
 resource "aws_s3_bucket_policy" "root_bucket_policy" {
