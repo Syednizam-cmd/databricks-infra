@@ -1,8 +1,19 @@
+provider "aws" {
+  region = var.region
+}
 
 provider "databricks" {
-  alias = "mws"
+  alias      = "mws"
+  host       = "https://accounts.cloud.databricks.com"
+  account_id = var.databricks_account_id
 
-  host     = var.databricks_account_host
-  username = var.databricks_username
-  password = var.databricks_password
+  auth_type    = "aws"
+  aws_provider = aws
+}
+
+provider "databricks" {
+  host = databricks_mws_workspaces.this.workspace_url
+
+  auth_type    = "aws"
+  aws_provider = aws
 }

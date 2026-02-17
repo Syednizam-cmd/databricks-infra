@@ -32,12 +32,3 @@ variable "databricks_account_id" {
 variable "databricks_account_host" {
   type = string
 }
-
-variable "databricks_username" {
-  type = string
-}
-
-variable "databricks_password" {
-  type      = string
-  sensitive = true
-}
