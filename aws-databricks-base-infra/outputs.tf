@@ -29,7 +29,7 @@ output "root_bucket" {
 }
 
 output "cross_account_role_arn" {
-  value       = aws_iam_role.cross_account_role.arn
+  value       = aws_iam_role.cross_account_role_test_test12.arn
   description = "AWS Cross account role arn"
   depends_on  = [resource.aws_iam_role_policy.this]
 }
