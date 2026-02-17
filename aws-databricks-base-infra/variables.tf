@@ -1,3 +1,4 @@
+
 variable "tags" {
   type        = map(string)
   description = "(Required) Map of tags to be applied to the kinesis stream"
@@ -37,6 +38,6 @@ variable "databricks_username" {
 }
 
 variable "databricks_password" {
-  type = string
+  type      = string
   sensitive = true
 }
