@@ -27,6 +27,6 @@ data "aws_iam_policy_document" "this" {
 
 resource "aws_iam_role_policy" "this" {
   name   = "${var.prefix}-policy"
-  role   = aws_iam_role.cross_account_role_test12.id
+  role   = aws_iam_role.cross_account_role_test_test12.id
   policy = data.aws_iam_policy_document.this.json
 }
