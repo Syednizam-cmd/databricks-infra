@@ -24,7 +24,7 @@ output "private_route_table_ids" {
 }
 
 output "root_bucket" {
-  value       = aws_s3_bucket.root_storage_bucket_syed.bucket
+  value       = aws_s3_bucket.root_storage_bucket_syed_028.bucket
   description = "root bucket"
 }
 
