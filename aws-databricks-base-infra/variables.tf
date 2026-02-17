@@ -28,7 +28,6 @@ variable "databricks_account_id" {
   description = "(Required) Databricks Account ID"
 }
 
-
 variable "databricks_account_host" {
   type = string
 }
