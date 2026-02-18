@@ -1,8 +1,21 @@
+# Who am I? (account-scoped uniqueness)
+data "aws_caller_identity" "current" {}
+
+# Tiny random suffix (e.g., "a1b2c3")
+resource "random_id" "sfx" {
+  byte_length = 3
+}
+
+locals {
+  bucket_name = "${var.prefix}-rootbucket-${data.aws_caller_identity.current.account_id}-${random_id.sfx.hex}"
+}
+
 resource "aws_s3_bucket" "root_storage_bucket_syed_028" {
-  bucket        = "${var.prefix}-rootbucket"
+  bucket        = local.bucket_name
   force_destroy = true
+
   tags = merge(var.tags, {
-    Name = "${var.prefix}-rootbucket"
+    Name = local.bucket_name
   })
 }
 
@@ -32,6 +45,7 @@ resource "aws_s3_bucket_public_access_block" "root_storage_bucket" {
   depends_on              = [aws_s3_bucket.root_storage_bucket_syed_028]
 }
 
+# Databricks will compute the correct policy for the *actual* name
 data "databricks_aws_bucket_policy" "this" {
   bucket = aws_s3_bucket.root_storage_bucket_syed_028.bucket
 }
